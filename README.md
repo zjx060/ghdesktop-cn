@@ -36,6 +36,17 @@ node tools/restore-en.mjs    # 还原英文
 
 依赖只有 Node.js 18+。解析器 `acorn` 已随仓库提供，**无需 `npm install`**。
 
+## 作为 WorkBuddy 技能安装
+
+仓库自带技能包，装好后不用记路径，一句话就能调用：
+
+1. 克隆本仓库
+2. 双击 `skill\install-skill.bat`（把工具包装进 `%USERPROFILE%\.workbuddy\skills\ghdesktop-cn`）
+3. 之后直接说「汉化 GitHub Desktop」「检查汉化覆盖率」「还原英文界面」
+
+技能里的四条铁律（先确认客户端退出、不碰账号数据、不翻译逻辑位置、失败即回退）写在
+[skill/SKILL.md](skill/SKILL.md)，安装脚本只是把工具包和说明一起复制过去。
+
 ## 目录结构
 
 ```
