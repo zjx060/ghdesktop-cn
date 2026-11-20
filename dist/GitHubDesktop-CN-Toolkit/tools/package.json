@@ -1,0 +1,10 @@
+{
+  "name": "github-desktop-cn-tools",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "GitHub Desktop 中文化工具链（版本自适应 + 术语保留）",
+  "dependencies": {
+    "acorn": "^8.19.0"
+  }
+}

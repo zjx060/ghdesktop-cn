@@ -1,0 +1,56 @@
+{
+  "_说明": "专业术语保留层。fragments=中文片段→英文术语；whole=按英文原文整串覆盖；byZh=按当前中文整串修正；menuStyle=把 &F.文件 改成 文件(&F) 的中文菜单惯例。每次打补丁后由 apply-terms.mjs 应用。",
+  "menuStyle": true,
+  "fragments": {
+    "GitHub桌面": "GitHub Desktop",
+    "企业GitHub": "GitHub Enterprise",
+    "智能助手": "Copilot",
+    "拉取请求": "Pull Request",
+    "个人访问令牌": "Personal Access Token",
+    "分叉": "Fork"
+  },
+  "whole": {
+    "Cherry-pick commit…": "Cherry-pick 提交…",
+    "Cherry-pick ": "Cherry-pick ",
+    "Rebase in progress": "Rebase 进行中",
+    "Stash all changes…": "Stash 所有更改…",
+    "Stash all changes": "Stash 所有更改",
+    "Detached HEAD": "Detached HEAD",
+    "Cannot publish detached HEAD": "无法发布 detached HEAD",
+    "The current repository is in a detached HEAD state.": "当前代码仓处于 detached HEAD 状态。",
+    "Checking out a commit will create a detached HEAD, and you will no longer be on any branch. Are you sure you want to checkout this commit?": "签出该提交会进入 detached HEAD 状态，之后将不在任何分支上。确定要签出吗？",
+    "upstream": "upstream",
+    "Upstream already exists": "upstream 已存在",
+    "Upstream Already Exists": "upstream 已存在",
+    "A tag with that name already exists": "该名称的 Tag 已存在",
+    "Checkout in new worktree…": "在新 worktree 中检出…",
+    "Fork this repository": "Fork 此代码仓",
+    "fork behavior settings": "Fork 行为设置",
+    "Issues will be created in ": "Issue 将创建到 ",
+    "When a stash exists, access it at the bottom of the Changes tab to the left.": "存在 Stash 时，可在左侧「更改」标签页底部访问。"
+  },
+  "byZh": {
+    "隐藏更改": "Stash 更改",
+    "查看隐藏": "查看 Stash",
+    "恢复隐藏": "恢复 Stash",
+    "放弃隐藏": "放弃 Stash",
+    "丢弃隐藏项?": "放弃 Stash?",
+    "您确定要放弃这些隐藏的更改吗?": "确定要放弃这些 Stash 更改吗？",
+    " 你隐藏的文件到修改列表中.": " 会将您的 Stash 文件移到「更改」列表中。",
+    "查看您隐藏的更改": "查看您的 Stash 更改",
+    "您现在可以将更改隐藏起来，然后再进行恢复。": "您现在可以 Stash 更改，之后再恢复。",
+    "创建标签…": "创建 Tag…",
+    "创建标记": "创建 Tag",
+    "创建新标记": "创建新 Tag"
+  },
+  "byContext": [
+    { "before": "?", "from": "Summary", "to": "摘要" },
+    { "before": "??", "from": "Name", "to": "姓名" },
+    { "before": "label:", "from": "Email", "to": "电子邮件" },
+    { "before": "||", "from": "Save", "to": "保存" },
+    { "beforeRegex": "createElement\\(\"span\",null,$", "from": "Summary", "to": "摘要" },
+    { "before": "this.onShowPreferences},", "from": "Preferences", "to": "选项" },
+    { "beforeRegex": "okButtonText:[A-Za-z_$][\\w$]*\\?$", "from": "Remove", "to": "移除" },
+    { "beforeRegex": "okButtonText:[A-Za-z_$][\\w$]*\\?\"[^\"]*\":$", "from": "Delete", "to": "删除" }
+  ]
+}

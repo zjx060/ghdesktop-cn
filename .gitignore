@@ -1,0 +1,22 @@
+# 运行产物（按版本生成，不入库）
+backup-*/
+patch-*/
+.upstream/
+.build/
+.tmp/
+last-run.log
+
+# 生成物：打包文件与下载数据由脚本重新生成
+*.zip
+dist/site/toolkit.json
+tools/map-*.json
+
+# 依赖：只保留 acorn，保证解压即用（无需 npm install）
+**/node_modules/*
+!**/node_modules/acorn/
+!**/node_modules/acorn/**
+
+# 系统
+Thumbs.db
+.DS_Store
+desktop.ini

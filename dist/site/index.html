@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GitHub Desktop 中文工具链 · 版本自适应汉化</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --card:#ffffff; --line:#e5e7eb; --ink:#1a1d21; --sub:#5b6472;
+    --accent:#2563eb; --accent-soft:#eff4ff; --ok:#0f766e; --ok-soft:#ecfdf5;
+    --warn:#b45309; --warn-soft:#fffbeb;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:"PingFang SC","Microsoft YaHei","Segoe UI",system-ui,-apple-system,sans-serif;
+    font-size:13px; line-height:1.75; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:960px;margin:0 auto;padding:44px 24px 72px}
+  h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.01em}
+  h1{font-size:27px;line-height:1.35}
+  h2{font-size:16px;margin-bottom:14px}
+  h3{font-size:13.5px}
+  p{margin:0 0 10px;color:var(--sub)}
+  code,.mono{font-family:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace}
+
+  /* header */
+  header{padding-bottom:28px;border-bottom:1px solid var(--line);margin-bottom:32px}
+  .eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:var(--accent);
+    background:var(--accent-soft);border:1px solid #dbe6ff;border-radius:999px;padding:3px 10px;margin-bottom:14px}
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+  .lede{font-size:13.5px;max-width:660px;margin-top:10px}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .tag{font-size:11.5px;color:var(--sub);background:#fff;border:1px solid var(--line);border-radius:6px;padding:3px 9px}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:36px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .stat b{display:block;font-size:21px;line-height:1.3;letter-spacing:-.02em}
+  .stat span{font-size:11.5px;color:var(--sub)}
+  .stat small{display:block;font-size:11px;color:#8b949e;margin-top:2px}
+
+  section{margin-bottom:36px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px}
+
+  /* flow */
+  .flow{display:grid;grid-template-columns:1fr 26px 1fr 26px 1fr;align-items:stretch;gap:0}
+  .step{border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:#fff}
+  .step .n{font-size:11px;color:var(--accent);font-weight:600;letter-spacing:.04em}
+  .step h3{margin:4px 0 6px;font-size:13.5px}
+  .step p{font-size:11.5px;margin:0;line-height:1.7}
+  .arrow{display:flex;align-items:center;justify-content:center;color:#c3c9d2;font-size:15px}
+
+  /* table */
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:11.5px;color:var(--sub);font-weight:600;background:#fbfcfd}
+  tr:last-child td{border-bottom:none}
+  td.mono{font-size:12px;color:#0f172a}
+  .pill{display:inline-block;font-size:11px;padding:1px 7px;border-radius:5px;border:1px solid}
+  .pill.ok{color:var(--ok);background:var(--ok-soft);border-color:#cdeee5}
+  .pill.warn{color:var(--warn);background:var(--warn-soft);border-color:#f3e3bd}
+
+  /* bars */
+  .bars{display:grid;gap:9px}
+  .bar{display:grid;grid-template-columns:150px 1fr 52px;align-items:center;gap:12px;font-size:12px}
+  .bar .track{height:7px;background:#eef1f5;border-radius:99px;overflow:hidden}
+  .bar .fill{height:100%;background:linear-gradient(90deg,#93b4fb,#2563eb);border-radius:99px}
+  .bar .val{text-align:right;color:var(--sub);font-variant-numeric:tabular-nums}
+
+  /* steps */
+  ol.steps{margin:0;padding-left:0;list-style:none;counter-reset:s}
+  ol.steps li{position:relative;padding-left:34px;margin-bottom:12px;color:var(--sub)}
+  ol.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:1px;
+    width:22px;height:22px;border-radius:50%;background:var(--accent-soft);color:var(--accent);
+    font-size:11.5px;font-weight:600;display:flex;align-items:center;justify-content:center}
+  ol.steps b{color:var(--ink);font-weight:600}
+
+  pre{background:#0f172a;color:#e2e8f0;border-radius:10px;padding:14px 16px;overflow:auto;
+      font-size:12px;line-height:1.7;margin:10px 0 0}
+  pre .c{color:#94a3b8}
+  pre .g{color:#86efac}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .note{border-left:2px solid #cbd5e1;padding-left:12px;font-size:12px;color:var(--sub)}
+  .note b{color:var(--ink)}
+
+  .dl{display:flex;align-items:center;justify-content:space-between;gap:16px;
+      background:linear-gradient(180deg,#ffffff,#fbfcfe);border:1px solid var(--line);
+      border-radius:12px;padding:18px 20px}
+  .btn{display:inline-flex;align-items:center;gap:7px;background:var(--accent);color:#fff;
+      border:none;cursor:pointer;font-family:inherit;
+      text-decoration:none;font-size:13px;font-weight:500;padding:9px 18px;border-radius:8px;
+      box-shadow:0 1px 2px rgba(37,99,235,.25);white-space:nowrap}
+  .btn:hover{background:#1d4ed8}
+  .btn:disabled{opacity:.72;cursor:default}
+  footer{border-top:1px solid var(--line);margin-top:44px;padding-top:18px;font-size:11.5px;color:#8b949e}
+  footer a{color:var(--sub);text-decoration:none;border-bottom:1px dotted #c3c9d2}
+
+  @media (max-width:760px){
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .flow{grid-template-columns:1fr;gap:8px}
+    .arrow{transform:rotate(90deg);height:14px}
+    .grid2{grid-template-columns:1fr}
+    .dl{flex-direction:column;align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow"><span class="dot"></span>Windows · GitHub Desktop 3.6.11 已验证</div>
+    <h1>GitHub Desktop 中文工具链</h1>
+    <p class="lede">
+      官方从未提供多语言支持。这套工具把界面换成中文，并解决了社区汉化最麻烦的两件事：
+      <b>升级后失效</b>，以及<b>专业术语被机翻成中文</b>。
+    </p>
+    <div class="tags">
+      <span class="tag">一键打补丁</span>
+      <span class="tag">版本自适应</span>
+      <span class="tag">术语保留层</span>
+      <span class="tag">自动备份 / 可还原</span>
+      <span class="tag">无需安装依赖</span>
+    </div>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><b>209<span style="font-size:13px;color:#8b949e">/232</span></b><span>界面位置已中文化</span><small>90.1%，另有 3 处有意保留</small></div>
+    <div class="stat"><b>12,749</b><span>个汉字注入界面</span><small>renderer.js 实测</small></div>
+    <div class="stat"><b>1,204</b><span>条中英词典</span><small>按代码位置配对生成</small></div>
+    <div class="stat"><b>0.22<span style="font-size:13px">MB</span></b><span>工具包体积</span><small>内置解析器，开箱即用</small></div>
+  </div>
+
+  <section>
+    <h2>升级后为什么不会失效</h2>
+    <p>GitHub Desktop 每次升级都会新建 <code>app-X.Y.Z</code> 目录，旧的中文文件自然被绕过。工具按三级策略自动适配，仍是一个入口：</p>
+    <div class="flow">
+      <div class="step">
+        <div class="n">优先级 1</div><h3>本地缓存</h3>
+        <p>已有该版本补丁，直接覆盖。切换零等待。</p>
+      </div>
+      <div class="arrow">→</div>
+      <div class="step">
+        <div class="n">优先级 2</div><h3>上游跟随</h3>
+        <p>自动到社区汉化仓库取该版本，偏克隆只拉两个文件，秒级完成。</p>
+      </div>
+      <div class="arrow">→</div>
+      <div class="step">
+        <div class="n">优先级 3</div><h3>词典兜底</h3>
+        <p>上游还没更新时，用 1,225 条词典给新版本机器翻译，主界面可读。</p>
+      </div>
+    </div>
+    <p style="margin-top:14px;font-size:12px">无论走哪条路，最后都会再跑一遍术语保留层，并执行 <code>node --check</code> 语法自检——坏文件不会留在安装目录。</p>
+  </section>
+
+  <section>
+    <h2>术语保留：四类手段叠加</h2>
+    <p>社区补丁把 <code>GitHub Desktop</code> 译成「GitHub桌面」、<code>Cherry-pick</code> 译成「筛选」、<code>upstream</code> 译成「网上」。这类问题不能靠“换个词典”解决，要按上下文分别处理。</p>
+    <div class="card" style="padding:0;overflow:hidden">
+      <table>
+        <thead><tr><th style="width:120px">手段</th><th>作用</th><th style="width:280px">实例</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">whole</td><td>按英文原文整串覆盖，修正硬错</td><td class="mono">Detached HEAD → 保持英文<br>Rebase in progress → Rebase 进行中</td></tr>
+          <tr><td class="mono">byZh</td><td>按当前中文整串修正，覆盖对齐失败的串</td><td class="mono">隐藏更改 → Stash 更改<br>创建标记 → 创建 Tag</td></tr>
+          <tr><td class="mono">byContext</td><td>按前后代码特征定位，同词不同义分别处理</td><td class="mono">label:"Email" → 电子邮件<br>隐藏字段值 "Email" 不动</td></tr>
+          <tr><td class="mono">fragments</td><td>中文片段还原英文术语，并补中英留白</td><td class="mono">拉取请求 → Pull Request<br>智能助手 → Copilot</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>实测结果</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3 style="margin-bottom:12px">保留英文的术语（出现次数）</h3>
+        <div class="bars">
+          <div class="bar"><span>GitHub Desktop</span><div class="track"><div class="fill" style="width:14%"></div></div><span class="val">82</span></div>
+          <div class="bar"><span>Copilot</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="val">601</span></div>
+          <div class="bar"><span>Stash</span><div class="track"><div class="fill" style="width:46%"></div></div><span class="val">275</span></div>
+          <div class="bar"><span>worktree</span><div class="track"><div class="fill" style="width:21%"></div></div><span class="val">125</span></div>
+          <div class="bar"><span>Pull Request</span><div class="track"><div class="fill" style="width:7%"></div></div><span class="val">43</span></div>
+          <div class="bar"><span>Cherry-pick</span><div class="track"><div class="fill" style="width:7%"></div></div><span class="val">40</span></div>
+          <div class="bar"><span>detached HEAD</span><div class="track"><div class="fill" style="width:2%"></div></div><span class="val">5</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3 style="margin-bottom:12px">误译残留（应全部为 0）</h3>
+        <div class="bars">
+          <div class="bar"><span>GitHub桌面</span><div class="track"><div class="fill" style="width:0%"></div></div><span class="val">0</span></div>
+          <div class="bar"><span>企业GitHub</span><div class="track"><div class="fill" style="width:0%"></div></div><span class="val">0</span></div>
+          <div class="bar"><span>智能助手</span><div class="track"><div class="fill" style="width:0%"></div></div><span class="val">0</span></div>
+          <div class="bar"><span>筛选提交</span><div class="track"><div class="fill" style="width:0%"></div></div><span class="val">0</span></div>
+          <div class="bar"><span>在进行重构中</span><div class="track"><div class="fill" style="width:0%"></div></div><span class="val">0</span></div>
+          <div class="bar"><span>分离头部</span><div class="track"><div class="fill" style="width:0%"></div></div><span class="val">0</span></div>
+          <div class="bar"><span>隐藏更改</span><div class="track"><div class="fill" style="width:0%"></div></div><span class="val">0</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>怎么用</h2>
+    <ol class="steps">
+      <li><b>完全退出</b> GitHub Desktop（托盘图标右键 → Quit）</li>
+      <li>解压后双击 <b>apply-cn.bat</b>，等待提示完成</li>
+      <li>重新打开 GitHub Desktop，界面即为中文</li>
+    </ol>
+    <pre><span class="c"># 也可以用命令行，输出更完整</span>
+<span class="g">apply-cn.bat</span>
+
+<span class="c"># 首次运行会看到（示例）</span>
+当前安装版本：3.6.11
+[备份] 官方原版已存到 …\GitHubDesktopCN\backup\backup-3.6.11
+[匹配] 本地无此版本补丁，尝试上游…
+[上游] 已取得 3.6.11 补丁并缓存到 patch-3.6.11
+[术语] renderer.js: 整串覆盖 21 处，上下文修正 10 处，片段/留白 231 处
+[完成] 3.6.11 已中文化</pre>
+    <p style="margin-top:12px;font-size:12px">想临时回到英文：双击 <code>restore-en.bat</code>。想做一次体检：<code>check-cn.bat</code>。</p>
+  </section>
+
+  <section>
+    <div class="grid2">
+      <div class="card">
+        <h3 style="margin-bottom:10px">边界与限制</h3>
+        <ul style="margin:0;padding-left:18px;color:var(--sub);font-size:12px;line-height:1.85">
+          <li>汉化质量依赖上游补丁，本项目做修正而非重写全部译文</li>
+          <li>枚举值与逻辑键刻意保留英文（<code>Warning</code>、<code>Loading</code>、<code>Unified</code>），改了会导致功能异常</li>
+          <li>git 命令自身输出不翻译——那是数据不是界面</li>
+          <li>上游滞后新版本 1–3 天，其间走词典兜底，覆盖约 88%</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="margin-bottom:10px">安全与恢复</h3>
+        <ul style="margin:0;padding-left:18px;color:var(--sub);font-size:12px;line-height:1.85">
+          <li>只修改本机 <code>resources/app</code> 下两个 JS 文件</li>
+          <li>不接触账号、令牌或任何仓库数据</li>
+          <li>打补丁前自动备份官方原版到 <code>%LOCALAPPDATA%\GitHubDesktopCN</code></li>
+          <li>备份按版本隔离，升级后各版本互不覆盖</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="dl">
+      <div>
+        <h3>下载工具包</h3>
+        <p style="margin:4px 0 0;font-size:12px">解压即用 · 内置 JS 解析器 · 需要 Node.js 18+（或 WorkBuddy 自带）</p>
+      </div>
+      <div>
+        <button class="btn" id="dl" type="button">下载 .zip · 0.22 MB</button>
+        <div style="margin-top:8px;font-size:11.5px;color:#8b949e">点击后由页面在本地生成压缩包，无需跳转</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    汉化补丁来自 <a href="https://github.com/lgw88/CN-GitHub-Desktop">lgw88/CN-GitHub-Desktop</a>（MIT）；
+    版本适配、术语层、词典与体检脚本为原创实现。
+    GitHub Desktop 为 GitHub, Inc. 产品，本项目与 GitHub 官方无关。
+  </footer>
+</div>
+<script>
+(function () {
+  var btn = document.getElementById('dl');
+  var label = btn.textContent;
+  btn.addEventListener('click', function () {
+    btn.disabled = true;
+    btn.textContent = '正在准备…';
+    fetch('toolkit.json', { cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw new Error('fetch'); return r.json(); })
+      .then(function (d) {
+        var bin = atob(d.b64), buf = new Uint8Array(bin.length);
+        for (var i = 0; i < bin.length; i++) buf[i] = bin.charCodeAt(i);
+        var url = URL.createObjectURL(new Blob([buf], { type: 'application/zip' }));
+        var a = document.createElement('a');
+        a.href = url; a.download = d.name;
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+        btn.textContent = '已开始下载';
+      })
+      .catch(function () {
+        btn.textContent = '下载失败，请刷新重试';
+        return;
+      })
+      .then(function () {
+        setTimeout(function () { btn.textContent = label; btn.disabled = false; }, 2500);
+      });
+  });
+})();
+</script>
+</body>
+</html>
