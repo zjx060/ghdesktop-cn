@@ -94,6 +94,8 @@
       box-shadow:0 1px 2px rgba(37,99,235,.25);white-space:nowrap}
   .btn:hover{background:#1d4ed8}
   .btn:disabled{opacity:.72;cursor:default}
+  .btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:none}
+  .btn.ghost:hover{background:#f3f5f8}
   footer{border-top:1px solid var(--line);margin-top:44px;padding-top:18px;font-size:11.5px;color:#8b949e}
   footer a{color:var(--sub);text-decoration:none;border-bottom:1px dotted #c3c9d2}
 
@@ -129,7 +131,7 @@
     <div class="stat"><b>209<span style="font-size:13px;color:#8b949e">/232</span></b><span>界面位置已中文化</span><small>90.1%，另有 3 处有意保留</small></div>
     <div class="stat"><b>12,749</b><span>个汉字注入界面</span><small>renderer.js 实测</small></div>
     <div class="stat"><b>1,204</b><span>条中英词典</span><small>按代码位置配对生成</small></div>
-    <div class="stat"><b>0.22<span style="font-size:13px">MB</span></b><span>工具包体积</span><small>内置解析器，开箱即用</small></div>
+    <div class="stat"><b>0.19<span style="font-size:13px">MB</span></b><span>工具包体积</span><small>内置解析器，开箱即用</small></div>
   </div>
 
   <section>
@@ -250,13 +252,17 @@
         <p style="margin:4px 0 0;font-size:12px">解压即用 · 内置 JS 解析器 · 需要 Node.js 18+（或 WorkBuddy 自带）</p>
       </div>
       <div>
-        <button class="btn" id="dl" type="button">下载 .zip · 0.22 MB</button>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+          <button class="btn" id="dl" type="button">下载 .zip · 0.19 MB</button>
+          <a class="btn ghost" href="https://github.com/zjx060/ghdesktop-cn" target="_blank" rel="noopener">源码 · GitHub</a>
+        </div>
         <div style="margin-top:8px;font-size:11.5px;color:#8b949e">点击后由页面在本地生成压缩包，无需跳转</div>
       </div>
     </div>
   </section>
 
   <footer>
+    开源在 <a href="https://github.com/zjx060/ghdesktop-cn">zjx060/ghdesktop-cn</a>（MIT）。
     汉化补丁来自 <a href="https://github.com/lgw88/CN-GitHub-Desktop">lgw88/CN-GitHub-Desktop</a>（MIT）；
     版本适配、术语层、词典与体检脚本为原创实现。
     GitHub Desktop 为 GitHub, Inc. 产品，本项目与 GitHub 官方无关。
